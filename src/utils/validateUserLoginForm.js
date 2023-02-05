@@ -1,17 +1,20 @@
-const validateUserLoginForm = (values) => {
-    const username = values.username;
-    const password = values.password;
+export const validateUserLoginForm = (values) => {
     const errors = {};
 
-    if (!username) {
-        errors.username = "The username field is required";
-    } else if (!password) {
-        errors.password = "The password field is required";
-    } else if (username.length <= 6 || username.length >= 15) {
-        errors.username = "The username must be between 6 and 15 characters";
-    } else if (password.length < 8) {
-        errors.password = "The password must be at least 8 characters";
+    if (!values.username) {
+        errors.username = 'Required';
+    } else if (values.username.length < 6) {
+        errors.username = 'Must be at least 6 characters.';
+    } else if (values.username.length > 15) {
+        errors.username = 'Must be 15 characters or less';
     }
+
+    if (!values.password) {
+        errors.password = 'Required';
+    } else if (values.password.length < 8) {
+        errors.password = 'Must be at least 8 characters.';
+    } 
+
 
     return errors;
 };
