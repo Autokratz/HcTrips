@@ -10,11 +10,11 @@ const ContactPage = () => {
                 <Col sm="4">
                     <h5>Our Address</h5>
                     <address>
-                        1 Nucamp Way
+                        Sydney CBD
                         <br />
-                        Seattle, WA 98001
+                        Sydney, 2000
                         <br />
-                        U.S.A.
+                       Australia
                     </address>
                 </Col>
                 <Col>
@@ -23,7 +23,7 @@ const ContactPage = () => {
                         className='btn btn-link'
                         href='tel:+12065551234'
                     >
-                        <i className='fa fa-phone' /> 1-206-555-1234
+                        <i className='fa fa-phone' /> 61-466-799-234
                     </a>
                     <br />
                     <a
@@ -31,7 +31,7 @@ const ContactPage = () => {
                         className='btn btn-link'
                         href='mailto:fakeemail@fakeemail.co'
                     >
-                        <i className='fa fa-envelope-o' /> campsites@nucamp.co
+                        <i className='fa fa-envelope-o' /> hectorcabra95@gmail.com
                     </a>
                 </Col>
             </Row>

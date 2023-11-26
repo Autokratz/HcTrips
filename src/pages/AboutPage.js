@@ -10,14 +10,7 @@ const AboutPage = () => {
                 <Col sm="6">
                     <h3>Our Mission</h3>
                     <p>
-                        We present a curated database of the best campsites in the
-                        vast woods and backcountry of the World Wide Web Wilderness.
-                        We increase access to adventure for the public while
-                        promoting safe and respectful use of resources. The expert
-                        wilderness trekkers on our staff personally verify each
-                        campsite to make sure that they are up to our standards. We
-                        also present a platform for campers to share reviews on
-                        campsites they have visited with each other.
+                        We offer and present a huge catalog of option to our customers who are willing to travel across Syndey, visiting its natural parks and enjoy its nature. Everything as easy as booking with us.
                     </p>
                 </Col>
                 <Col sm="6">
@@ -28,13 +21,13 @@ const AboutPage = () => {
                         <CardBody>
                             <dl className='row'>
                                 <dt className='col-6'>Founded</dt>
-                                <dd className='col-6'>February 3, 2016</dd>
-                                <dt className='col-6'>No. of Campsites in 2019</dt>
-                                <dd className='col-6'>563</dd>
-                                <dt className='col-6'>No. of Reviews in 2019</dt>
-                                <dd className='col-6'>4388</dd>
+                                <dd className='col-6'>November 15, 2023</dd>
+                                <dt className='col-6'>No. of Campsites in 2024</dt>
+                                <dd className='col-6'>10</dd>
+                                <dt className='col-6'>No. of Reviews in 2023</dt>
+                                <dd className='col-6'>10</dd>
                                 <dt className='col-6'>Employees</dt>
-                                <dd className='col-6'>42</dd>
+                                <dd className='col-6'>8</dd>
                             </dl>
                         </CardBody>
                     </Card>
@@ -43,14 +36,11 @@ const AboutPage = () => {
                     <Card className="bg-light mt-3">
                         <CardBody>
                             <blockquote className="blockquote">
-                                <p>I will not follow where the path may lead, but I
-                                    will go where there is no path, and I will leave
-                                    a trail.</p>
+                                <p>Since i started booking my trips with HC Trips i have a new adventure every summer.</p>
                                 <footer className="blockquote-footer">
-                                    Muriel Strode,{' '}
+                                    Michael Fernandez{' '}
                                     <cite title='Source Title'>
-                                        "Wind-Wafted Wild Flowers" - The Open Court,
-                                        1903
+                                       Sydney 2023
                                     </cite>
                                 </footer>
                             </blockquote>
@@ -58,12 +48,7 @@ const AboutPage = () => {
                     </Card>
                 </Col>
             </Row>
-            <Row className="row-content">
-                <Col xs="12">
-                    <h3>Community Partners</h3>
-                </Col>
-                <PartnersList/>
-            </Row>
+            
         </Container>
     )
 };

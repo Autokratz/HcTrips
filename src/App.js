@@ -7,6 +7,7 @@ import './App.css';
 import HomePage from "./pages/HomePage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
+import TaskPage from "./pages/TaskPage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CampsiteDetailPage from "./pages/CampsiteDetailPage";
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="contact" element={<ContactPage/>}/>
                 <Route path="directory" element={<CampsitesDirectoryPage/>}/>
+                <Route path="tasks" element={<TaskPage/>}/>
                 <Route
                     path="directory/:campsiteId"
                     element={<CampsiteDetailPage/>}
