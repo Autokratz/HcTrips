@@ -1,46 +1,68 @@
-# Getting Started with Create React App and Redux
+# HcTrips
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+A campsite directory built with React and Redux Toolkit — feature-sliced state, async thunks against a REST backend, validated forms and animated list rendering.
 
-## Available Scripts
+Built in 2023 during the Nucamp full stack bootcamp. Kept here because the state architecture is the part worth showing: it is organised by feature rather than by file type, which is the structure I would still reach for today.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## What it is
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Browse campsites, read and post comments, view partners and promotions, log in, and send a contact form.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+src/
+├── app/
+│   ├── store.js              Redux store configuration
+│   └── shared/baseUrl.js     single place the API base lives
+├── features/                 state and UI colocated per feature
+│   ├── campsites/            list, card, detail, slice
+│   ├── comments/             list, item, form, slice
+│   ├── partners/             list, item, slice
+│   ├── promotions/           slice
+│   └── user/                 login form, slice
+└── components/               Header, Footer, SubHeader, Loading, Error, ContactForm
+```
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What I built
 
-### `npm run build`
+**Feature-sliced state.** Each feature owns its slice, its selectors and its components in one directory. Adding a feature means adding a folder, not touching five shared files scattered across the tree. The alternative — `components/`, `reducers/`, `actions/` — spreads one concern across the whole project and is the structure that makes large React codebases painful.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Async thunks with real loading states.** `createAsyncThunk` handles fetching, and each slice tracks `isLoading` and `errMess` separately. The UI renders a spinner, an error, or data — never a blank component that silently fails. A fetch that can only succeed is a fetch you have not finished writing.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Form validation with Formik.** The contact form and the comment form validate on blur and on submit with field-level messages, rather than letting the browser's default validation decide what the user sees.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Animated list rendering** with `react-spring`, so lists fade and stagger in rather than appearing all at once.
 
-### `npm run eject`
+**Routing** with React Router, including a parameterised campsite detail route and a not-found route.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Running it
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+npm install
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The API base URL lives in `src/app/shared/baseUrl.js` and expects the bootcamp's JSON server backend. Without it running, the app renders its loading and error states — which, given the point above, is at least the behaviour it was designed for.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## What I would do differently now
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Untrack `node_modules`.** This repository committed its dependencies before `.gitignore` was added, and they were never removed from tracking — nearly 50,000 files. I have removed them from tracking, though the history still carries them, which is why a clone of this repository is far larger than the code in it. The lesson stuck: check `git status` before the first commit, not after the fortieth.
+
+**Delete the template boilerplate.** `features/counter/` is the Create React App Redux template's example and has nothing to do with campsites. Leaving generated scaffolding in a project makes a reader work out which parts are mine — I would remove it on day one now.
+
+**Handle the API base properly.** A hardcoded `baseUrl.js` should be an environment variable, so the same build can point at local, staging and production without a code change.
+
+**Write tests.** There are none, beyond the template's `counterSlice.spec.js`. The slices are reducers — pure functions from state and action to new state — and they are the easiest thing in the entire codebase to test. In [netwatch](https://github.com/Autokratz/netwatch) I wrote 118 tests at 96% branch coverage around logic of exactly that kind.
+
+**Type the API responses.** Every `action.payload` here is untyped, so a backend field rename fails silently in a component rather than loudly at the boundary.
+
+---
+
+MIT · built by [Hector Cabra](https://autokratz.github.io)
